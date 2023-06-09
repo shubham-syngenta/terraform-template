@@ -59,7 +59,7 @@ spec:
         ui:options:
           allowedHosts:
             - github.com
-steps:
+  steps:
     - id: template
       name: Fetch Skeleton + Template
       action: fetch:template
@@ -89,7 +89,7 @@ steps:
       input:
         repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
         catalogInfoPath: "/catalog-info.yaml"
-output:
+  output:
     links:
       - title: Repository
         url: ${{ steps.publish.output.remoteUrl }}
