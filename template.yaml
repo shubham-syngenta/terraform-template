@@ -16,7 +16,8 @@ spec:
         - name
         - dev
         - qa
-        - prod  
+        - prod 
+        - stage 
       properties:
         name:
           title: Name
@@ -25,11 +26,13 @@ spec:
         dev:
           title: Dev
           type: string
-          description: AWS Account No. of DEV
+          description: AWS Account No. of DEV( if don't have account just put 000000000000)
+        
         qa:
           title: QA
           type: string
-          description: AWS Account No. of QA
+          description: AWS Account No. of QA( if don't have account just put 000000000000)
+        
         prod:
           title: PROD
           type: string
@@ -37,7 +40,7 @@ spec:
         stage:
           title: STAGE
           type: string
-          description: AWS Account No. of STAGE
+          description: AWS Account No. of STAGE( if don't have account just put 000000000000)
         
         owner:
           title: Owner
@@ -64,15 +67,12 @@ spec:
       action: fetch:template
       input:
         url: ./skeleton
-        copyWithoutTemplating:
-          - .github/workflows/*
         values:
           name: ${{ parameters.name }}
           dev: ${{ parameters.dev }}
           qa: ${{ parameters.qa}}
           prod: ${{ parameters.prod }}
           stage: ${{ parameters.stage }}
-          destination: ${{ parameters.repoUrl | parseRepoUrl }}
           owner: ${{ parameters.owner }}
     - id: publish
       name: Publish
