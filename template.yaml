@@ -6,10 +6,10 @@ metadata:
   description: Template for creating infra using terraform
   tags:
     - terraform
-    - infrs
-spec:
-  owner: shubham@syngenta.com
-  type: infra
+    - infra
+# spec:
+#   owner: shubham@syngenta.com
+#   type: infra
 
 parameters:
   - title: Fill in some steps
