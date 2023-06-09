@@ -1,7 +1,7 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: Infra template
+  name: infra-template
   title: Infra
   description: Template for creating infra using terraform
   tags:
@@ -16,38 +16,40 @@ spec:
         - name
         - dev
         - qa
-        - prod
-     
-    properties:
-      name:
-        title: Name
-        type: string
-        description: Unique name of the component
-      dev:
-        title: Dev
-        type: string
-        description: AWS Account No. of DEV
-      qa:
-        title: QA
-        type: string
-        description: AWS Account No. of QA
-      prod:
-        title: PROD
-        type: string
-        description: AWS Account No. of PROD
-      stage:
-        title: STAGE
-        type: string
-        description: AWS Account No. of STAGE
-      
-      owner:
-        title: Owner
-        type: string
-        description: Owner of the component
-        # ui:field: OwnerPicker
-        # ui:options:
-        #   catalogFilter:
-        #     kind: Group
+        - prod 
+        - stage 
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name of the component
+        dev:
+          title: Dev
+          type: string
+          description: AWS Account No. of DEV( if don't have account just put 000000000000)
+        
+        qa:
+          title: QA
+          type: string
+          description: AWS Account No. of QA( if don't have account just put 000000000000)
+        
+        prod:
+          title: PROD
+          type: string
+          description: AWS Account No. of PROD
+        stage:
+          title: STAGE
+          type: string
+          description: AWS Account No. of STAGE( if don't have account just put 000000000000)
+        
+        owner:
+          title: Owner
+          type: string
+          description: Owner of the component
+          # ui:field: OwnerPicker
+          # ui:options:
+          #   catalogFilter:
+          #     kind: Group
     - title: Choose a location
       required:
         - repoUrl
@@ -65,15 +67,12 @@ spec:
       action: fetch:template
       input:
         url: ./skeleton
-        copyWithoutTemplating:
-          - .github/workflows/*
         values:
           name: ${{ parameters.name }}
           dev: ${{ parameters.dev }}
           qa: ${{ parameters.qa}}
           prod: ${{ parameters.prod }}
           stage: ${{ parameters.stage }}
-          destination: ${{ parameters.repoUrl | parseRepoUrl }}
           owner: ${{ parameters.owner }}
     - id: publish
       name: Publish
