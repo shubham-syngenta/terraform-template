@@ -1,24 +1,23 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: Terraform template
+  name: Infra template
   title: Infra
   description: Template for creating infra using terraform
   tags:
     - terraform
     - infra
-# spec:
-#   owner: shubham@syngenta.com
-#   type: infra
-
-parameters:
-  - title: Fill in some steps
-    required:
-      - name
-      - dev
-      - qa
-      - prod
-      
+spec:
+  owner: shubham@syngenta.com
+  type: infra
+  parameters:
+    - title: Fill in some steps
+      required:
+        - name
+        - dev
+        - qa
+        - prod
+     
     properties:
       name:
         title: Name
