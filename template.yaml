@@ -1,53 +1,14 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: Infra template
-  title: Infra
-  description: Template for creating infra using terraform
-  tags:
-    - terraform
-    - infra
+  name: bitbucket-demo
+  title: Test Bitbucket RepoUrlPicker template
+  description: scaffolder v1beta3 template demo publishing to bitbucket
 spec:
-  owner: shubham@syngenta.com
-  type: infra
+  owner: backstage/techdocs-core
+  type: service
+
   parameters:
-    - title: Fill in some steps
-      required:
-        - name
-        - dev
-        - qa
-        - prod
-     
-    properties:
-      name:
-        title: Name
-        type: string
-        description: Unique name of the component
-      dev:
-        title: Dev
-        type: string
-        description: AWS Account No. of DEV
-      qa:
-        title: QA
-        type: string
-        description: AWS Account No. of QA
-      prod:
-        title: PROD
-        type: string
-        description: AWS Account No. of PROD
-      stage:
-        title: STAGE
-        type: string
-        description: AWS Account No. of STAGE
-      
-      owner:
-        title: Owner
-        type: string
-        description: Owner of the component
-        # ui:field: OwnerPicker
-        # ui:options:
-        #   catalogFilter:
-        #     kind: Group
     - title: Choose a location
       required:
         - repoUrl
@@ -59,40 +20,71 @@ spec:
           ui:options:
             allowedHosts:
               - github.com
+            # The rest of these options are optional.
+            # You can read more at: https://backstage.io/docs/reference/plugin-scaffolder.repourlpickerfieldextension
+            # allowedOwners:
+            #   - WORKSPACE1
+            #   - WORKSPACE2
+            # allowedProjects:
+            #   - PROJECT1
+            #   - PROJECT2
+            # allowedRepos:
+            #   - REPO1
+            #   - REPO2
+    - title: Fill in some steps
+      required:
+        - name
+        - owner
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name of the component
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+        owner:
+          title: Owner
+          type: string
+          description: Owner of the component
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
+
   steps:
-    - id: template
-      name: Fetch Skeleton + Template
+    - id: fetch-base
+      name: Fetch Base
       action: fetch:template
       input:
-        url: ./skeleton
-        copyWithoutTemplating:
-          - .github/workflows/*
+        url: ./template
         values:
           name: ${{ parameters.name }}
-          dev: ${{ parameters.dev }}
-          qa: ${{ parameters.qa}}
-          prod: ${{ parameters.prod }}
-          stage: ${{ parameters.stage }}
-          destination: ${{ parameters.repoUrl | parseRepoUrl }}
           owner: ${{ parameters.owner }}
+    # - id: fetch-docs
+    #   name: Fetch Docs
+    #   action: fetch:plain
+    #   input:
+    #     targetPath: ./community
+    #     url: https://github.com/backstage/community/tree/main/backstage-community-sessions
     - id: publish
       name: Publish
-      action: publish:github
+      action: publish:bitbucket
       input:
-        allowedHosts: ["github.com"]
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
-        defaultBranch: main
+
     - id: register
       name: Register
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
-        catalogInfoPath: "/catalog-info.yaml"
+        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+
   output:
     links:
       - title: Repository
-        url: ${{ steps.publish.output.remoteUrl }}
+        url: ${{ steps['publish'].output.remoteUrl }}
       - title: Open in catalog
         icon: catalog
-        entityRef: ${{ steps.register.output.entityRef }}
+        entityRef: ${{ steps['register'].output.entityRef }}
