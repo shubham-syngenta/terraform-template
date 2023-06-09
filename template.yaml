@@ -15,9 +15,9 @@ parameters:
   - title: Fill in some steps
     required:
       - name
-      - DEV
-      - QA
-      - PROD
+      - dev
+      - qa
+      - prod
       
     properties:
       name:
@@ -76,7 +76,6 @@ steps:
           stage: ${{ parameters.stage }}
           destination: ${{ parameters.repoUrl | parseRepoUrl }}
           owner: ${{ parameters.owner }}
-
     - id: publish
       name: Publish
       action: publish:github
@@ -85,15 +84,13 @@ steps:
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
         defaultBranch: main
-
     - id: register
       name: Register
       action: catalog:register
       input:
         repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
         catalogInfoPath: "/catalog-info.yaml"
-
-  output:
+output:
     links:
       - title: Repository
         url: ${{ steps.publish.output.remoteUrl }}
