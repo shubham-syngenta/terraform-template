@@ -1,7 +1,7 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: Infra template
+  name: infra-template
   title: Infra
   description: Template for creating infra using terraform
   tags:
