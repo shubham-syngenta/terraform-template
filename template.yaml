@@ -19,6 +19,20 @@ spec:
         - prod 
         - stage 
       properties:
+        team_name:
+          title: Github Team Name
+          type: string
+          description: Your Github Team Name in which the repo will create.
+          default: team
+          enum:
+            - cropwise-base-mobile
+            - global-data-science-brbh
+            - cropwise-base-framework
+            - cropwise-base
+            - cropwise-seeds-mobile
+            - cropwise-spray-assist
+            - insight-engine
+            - cropwise-hedging
         name:
           title: Name
           type: string
@@ -26,12 +40,12 @@ spec:
         dev:
           title: Dev
           type: string
-          description: AWS Account No. of DEV( if don't have account just put 000000000000)
+          description: AWS Account No. of DEV
         
         qa:
           title: QA
           type: string
-          description: AWS Account No. of QA( if don't have account just put 000000000000)
+          description: AWS Account No. of QA
         
         prod:
           title: PROD
