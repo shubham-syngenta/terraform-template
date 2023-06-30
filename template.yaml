@@ -71,13 +71,14 @@ spec:
           type: string
           #default: github.com?owner=${{ requiredParam "owner" }}&repo=${{ requiredParam "name"}}
           ui:field: RepoUrlPicker
-          # ui:options:
-          #   allowedHosts:
-          #     - github.com
-          #   allowedOwners:
-          #     - [{{ parameters.owner }}]
+          ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              catalogFilter:
+                kind: Group
             # allowedRepos:
-              # - [{{ parameters.name}}]
+            #   - [{{ parameters.name}}]
   steps:
     - id: template
       name: Fetch Skeleton + Template
