@@ -75,9 +75,9 @@ spec:
             allowedHosts:
               - github.com
             allowedOwners:
-              - {{ parameters.owner }}
-            allowedRepos:
-              - {{ parameters.name}}
+              - [{{ parameters.owner }}]
+            # allowedRepos:
+              # - [{{ parameters.name}}]
   steps:
     - id: template
       name: Fetch Skeleton + Template
