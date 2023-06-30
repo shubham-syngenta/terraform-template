@@ -68,11 +68,15 @@ spec:
         repoUrl:
           title: Repository Location
           type: string
-          default: github.com?owner=${{ requiredParam "owner" }}&repo=${{ requiredParam "name"}}
-          #ui:field: RepoUrlPicker
+          #default: github.com?owner=${{ requiredParam "owner" }}&repo=${{ requiredParam "name"}}
+          ui:field: RepoUrlPicker
           ui:options:
             allowedHosts:
               - github.com
+            allowedOwners:
+              - {{ requiredParam "owner" }}
+            allowedRepos:
+              - {{ requiredParam "name"}}
   steps:
     - id: template
       name: Fetch Skeleton + Template
