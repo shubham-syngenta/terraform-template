@@ -5,7 +5,7 @@ metadata:
   title: Terraform
   description: Template for creating infra using terraform
   annotations:
-    github.com/project-slug: 'syngenta-digital/{{ requiredParam "repoUrl" }}'
+    github.com/project-slug: 'syngenta-digital/{{ requiredParam "name" }}'
   tags:
     - terraform
     - infra
@@ -68,8 +68,7 @@ spec:
         repoUrl:
           title: Repository Location
           type: string
-          Owner: '{{ requiredParam "owner" }}'
-          Repository: '{{ requiredParam "name" }}'
+          default: 'github.com?owner=${{ requiredParam "owner" }}&repo=${{ requiredParam "name"}}'
           #ui:field: RepoUrlPicker
           ui:options:
             allowedHosts:
