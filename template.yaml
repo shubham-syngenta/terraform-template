@@ -23,19 +23,13 @@ spec:
         - stage 
       properties:
         team_name:
-          title: Github Team Name
+          title: Team-name
           type: string
-          description: Your Github Team Name in which the repo will create.
-          default: team
-          enum:
-            - cropwise-base-mobile
-            - global-data-science-brbh
-            - cropwise-base-framework
-            - cropwise-base
-            - cropwise-seeds-mobile
-            - cropwise-spray-assist
-            - insight-engine
-            - cropwise-hedging
+          description: Team of the Component
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
         name:
           title: Name
           type: string
@@ -66,7 +60,7 @@ spec:
           ui:field: OwnerPicker
           ui:options:
             catalogFilter:
-              kind: Group
+              kind: User
     - title: Choose a location
       required:
         - repoUrl
