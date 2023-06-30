@@ -63,11 +63,10 @@ spec:
           title: Owner
           type: string
           description: Owner of the component
-          default: "syngenta-digital"
-          # ui:field: OwnerPicker
-          # ui:options:
-          #   catalogFilter:
-          #     kind: Group
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
     - title: Choose a location
       required:
         - repoUrl
