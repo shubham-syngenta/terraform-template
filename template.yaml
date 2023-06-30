@@ -68,6 +68,8 @@ spec:
         repoUrl:
           title: Repository Location
           type: string
+          Owner: '{{ requiredParam "owner" }}'
+          Repository: '{{ requiredParam "name" }}'
           ui:field: RepoUrlPicker
           ui:options:
             allowedHosts:
