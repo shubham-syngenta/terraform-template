@@ -34,7 +34,7 @@ spec:
           title: Name
           type: string
           description: Unique name of the component
-          default: {{ parameters.team_name }}
+          
         dev:
           title: Dev
           type: string
@@ -75,9 +75,9 @@ spec:
             allowedHosts:
               - github.com
             allowedOwners:
-              - '{{ requiredParam "owner" }}'
+              - {{ parameters.owner }}
             allowedRepos:
-              - '{{ requiredParam "name"}}'
+              - {{ parameters.name}}
   steps:
     - id: template
       name: Fetch Skeleton + Template
