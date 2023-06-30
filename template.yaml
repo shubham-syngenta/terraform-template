@@ -68,7 +68,7 @@ spec:
         repoUrl:
           title: Repository Location
           type: string
-          default: 'github.com?owner=${{ requiredParam "owner" }}&repo=${{ requiredParam "name"}}'
+          default: github.com?owner=${{ requiredParam "owner" }}&repo=${{ requiredParam "name"}}
           #ui:field: RepoUrlPicker
           ui:options:
             allowedHosts:
