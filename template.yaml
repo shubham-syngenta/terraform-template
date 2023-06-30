@@ -74,11 +74,10 @@ spec:
           ui:options:
             allowedHosts:
               - github.com
-            allowedOwners:
-              catalogFilter:
-                kind: Group
-            # allowedRepos:
-            #   - [{{ parameters.name}}]
+            # allowedOwners:
+            #   catalogFilter:
+            #     kind: Group
+             allowedRepos: {{ requiredParam "name" }}
   steps:
     - id: template
       name: Fetch Skeleton + Template
@@ -101,6 +100,9 @@ spec:
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
         defaultBranch: main
+        collaborators:
+          - team: ${{ parameters.team_name }}
+            access: maintain
         # values:
         #   name: ${{ parameters.name }}
         #   dev: ${{ parameters.dev }}
