@@ -62,18 +62,18 @@ spec:
           ui:options:
             catalogFilter:
               kind: User
-    - title: Choose a location
-      required:
-        - repoUrl
-      properties:
-        repoUrl:
-          title: Repository Location
-          type: string
-          default: ${{ requiredParam "owner" }}
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - github.com
+    # - title: Choose a location
+    #   required:
+    #     - repoUrl
+    #   properties:
+    #     repoUrl:
+    #       title: Repository Location
+    #       type: string
+    #       # default: ${{ requiredParam "owner" }}
+    #       ui:field: RepoUrlPicker
+    #       ui:options:
+    #         allowedHosts:
+    #           - github.com
             # allowedOwners:
             #   catalogFilter:
             #     kind: Group
@@ -99,7 +99,7 @@ spec:
       input:
         allowedHosts: ["github.com"]
         description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
+        # repoUrl: ${{ parameters.repoUrl }}
         defaultBranch: main
         collaborators:
           - team: ${{ parameters.team_name }}
