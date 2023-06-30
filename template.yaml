@@ -4,12 +4,15 @@ metadata:
   name: infra-template
   title: Terraform
   description: Template for creating infra using terraform
+  annotations:
+    github.com/project-slug: 'syngenta-digital/{{ requiredParam "repoUrl" }}'
   tags:
     - terraform
     - infra
 spec:
   owner: shubham@syngenta.com
   type: Infra
+  team: '{{ requiredParam "team_name" }}'
   parameters:
     - title: Fill in some steps
       required:
@@ -88,6 +91,7 @@ spec:
           prod: ${{ parameters.prod }}
           stage: ${{ parameters.stage }}
           owner: ${{ parameters.owner }}
+          team_name: ${{ parameters.team_name }}
     - id: publish
       name: Publish
       action: publish:github
@@ -96,6 +100,14 @@ spec:
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
         defaultBranch: main
+        # values:
+        #   name: ${{ parameters.name }}
+        #   dev: ${{ parameters.dev }}
+        #   qa: ${{ parameters.qa}}
+        #   prod: ${{ parameters.prod }}
+        #   stage: ${{ parameters.stage }}
+        #   owner: ${{ parameters.owner }}
+        #   team_name: ${{ parameters.team_name }}
     - id: register
       name: Register
       action: catalog:register
