@@ -34,7 +34,7 @@ spec:
           title: Name
           type: string
           description: Unique name of the component
-          default: '{{ requiredParam "team_name" }}'
+          default: {{ requiredParam "team_name" }}
         dev:
           title: Dev
           type: string
