@@ -61,19 +61,19 @@ spec:
           ui:options:
             catalogFilter:
               kind: User
-    # - title: Choose a location
-    #   required:
-    #     - repoUrl
-    #   properties:
-    #     repoUrl:
-    #       title: Repository Location
-    #       type: string
-    #       Owner: '{{ requiredParam "owner" }}'
-    #       Repository: '{{ requiredParam "name" }}'
-    #       ui:field: RepoUrlPicker
-    #       ui:options:
-    #         allowedHosts:
-    #           - github.com
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          Owner: '{{ requiredParam "owner" }}'
+          Repository: '{{ requiredParam "name" }}'
+          #ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
   steps:
     - id: template
       name: Fetch Skeleton + Template
@@ -94,7 +94,7 @@ spec:
       input:
         allowedHosts: ["github.com"]
         description: This is ${{ parameters.name }}
-        repoUrl: 'github.com?owner=${{ parameters.owner }}&repo=${{ parameters.name}}'
+        repoUrl: ${{ parameters.repoUrl }}
         defaultBranch: main
         # values:
         #   name: ${{ parameters.name }}
