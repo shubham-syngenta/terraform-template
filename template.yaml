@@ -62,23 +62,18 @@ spec:
           ui:options:
             catalogFilter:
               kind: User
-    # - title: Choose a location
-    #   required:
-    #     - repoUrl
-    #   properties:
-    #     repoUrl:
-    #       title: Repository Location
-    #       type: string
-    #       # default: ${{ requiredParam "owner" }}
-    #       ui:field: RepoUrlPicker
-    #       ui:options:
-    #         allowedHosts:
-    #           - github.com
-            # allowedOwners:
-            #   catalogFilter:
-            #     kind: Group
-            #  allowedRepos: 
-            #   - {{ requiredParam "name" }}
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          default: ${{ join("/",[parameters.owner, parameters.nane]) }}
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
   steps:
     - id: template
       name: Fetch Skeleton + Template
@@ -99,7 +94,7 @@ spec:
       input:
         allowedHosts: ["github.com"]
         description: This is ${{ parameters.name }}
-        repoUrl: github.com?owner=${{ parameters.owner| replace("user:", "") }}&repo=${{ parameters.name }}
+        repoUrl: ${{ parameters.repoUrl }}
         defaultBranch: main
         collaborators:
           - team: ${{ parameters.team_name }}
