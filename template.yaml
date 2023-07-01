@@ -94,7 +94,7 @@ spec:
       input:
         allowedHosts: ["github.com"]
         description: This is ${{ parameters.name }}
-        repoUrl: 'github.com?owner=${{ parameters.owner | replace("user:default/","") }}&repo=${{ parameters.name }}'
+        repoUrl: 'github.com?owner=syngenta-digital&repo=${{ parameters.name }}' #${{ parameters.owner | replace("user:default/","") }}
         defaultBranch: main
         collaborators:
           - team: ${{ parameters.team_name }}
