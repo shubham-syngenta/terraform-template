@@ -99,7 +99,7 @@ spec:
         collaborators:
           - team: ${{ parameters.team_name }}
             access: maintain
-          - user: {{ parameters.owner }}
+          - user: ${{ parameters.owner }}
             access: admin
         # values:
         #   name: ${{ parameters.name }}
