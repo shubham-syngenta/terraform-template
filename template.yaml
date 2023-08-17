@@ -4,8 +4,8 @@ metadata:
   name: infra-template
   title: Terraform
   description: Template for creating infra using terraform
-  annotations:
-    github.com/project-slug: 'syngenta-digital/{{ requiredParam "name" }}'
+  # annotations:
+  #   github.com/project-slug: 'syngenta-digital/{{ requiredParam "name" }}'
   tags:
     - terraform
     - infra
@@ -94,7 +94,7 @@ spec:
       input:
         allowedHosts: ["github.com"]
         description: This is ${{ parameters.name }}
-        repoUrl: 'github.com?owner=syngenta-digital&repo=${{ parameters.name }}' #${{ parameters.owner | replace("user:default/","") }}
+        repoUrl: 'github.com?owner=org-bs&repo=${{ parameters.name }}' #${{ parameters.owner | replace("user:default/","") }}
         defaultBranch: main
         collaborators:
           - team: ${{ parameters.team_name }}
