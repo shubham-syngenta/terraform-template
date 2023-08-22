@@ -6,9 +6,13 @@ metadata:
   description: Template for creating infra using terraform
   # annotations:
   #   github.com/project-slug: 'syngenta-digital/{{ requiredParam "name" }}'
-  tags:
-    - terraform
-    - infra
+  # tags:
+  #   - terraform
+  #   - infra
+  labels:
+    - labelKey: user
+      labelValue: shubham
+    # - user1: sk1
 spec:
   owner: shubham@syngenta.com
   type: Infra
