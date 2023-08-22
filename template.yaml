@@ -10,9 +10,7 @@ metadata:
   #   - terraform
   #   - infra
   labels:
-    # - labelKey: user
-    #   labelValue: shubham
-    - user1: sk1
+    example.com/custom: custom_label_value
 spec:
   owner: shubham@syngenta.com
   type: Infra
